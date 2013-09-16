@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : ruleset.xml
+    Id         : $Id: ruleset.xml 69 2009-12-06 16:17:08Z mirek $
+    Description:
+        Set of rules for PMD for project source code validation.
+-->
+
+<ruleset name="Text game ruleset"
+    xmlns="http://pmd.sf.net/ruleset/1.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sf.net/ruleset/1.0.0 http://pmd.sf.net/ruleset_xml_schema.xsd"
+    xsi:noNamespaceSchemaLocation="http://pmd.sf.net/ruleset_xml_schema.xsd">
+
+  <description>
+    This ruleset is for checking of nasty stuff in student's project code.
+  </description>
+
+  <!-- Here's some rules we'll specify one at a time -->
+  <rule ref="rulesets/basic.xml/UnnecessaryConversionTemporary" message="Nepoužívajte dočasnú premennú pri konvertovaní nejakého objektu na reťazec (''String''). Stačí túto konverziu napísať rovno za príkaz ''return''." />
+  <rule ref="rulesets/basic.xml/EmptyCatchBlock" message="Vložte nejaký príkaz na ošetrenie výnimky." />
+  <rule ref="rulesets/basic.xml/EmptyIfStmt" message="Vyhnite sa prázdnym ''if'' príkazom (ak však máte napísaný kód iba pre negáciu tejto prázdnej podmienky - cez ''else'', tak túto podmienku radšej negujte takto: ''!(POVODNA_PODMIENKA)'' a presuňte kód tam)." />
+  <rule ref="rulesets/basic.xml/EmptyWhileStmt" message="Vyhnite sa prázdnym ''while'' cyklom (v prípade, že v podmienke robíte niečo užitočné, presuňte to radšej do tela cyklu)." />
+  <rule ref="rulesets/basic.xml/EmptyTryBlock" message="Vyhnite sa prázdnym ''try'' blokom (zmažte ho)." />
+  <rule ref="rulesets/basic.xml/EmptyFinallyBlock" message="Vyhnite sa prázdnym ''finally'' blokom (zmažte ho alebo doplňte nejaký kód)." />
+  <rule ref="rulesets/basic.xml/EmptySwitchStatements" message="Vyhnite sa prázdnym ''switch'' príkazom (zmažte ho)." />
+  <rule ref="rulesets/basic.xml/ReturnFromFinallyBlock" message="Nepoužívajte príkaz ''return'' vo vnútri bloku ''finally''." />
+  <rule ref="rulesets/basic.xml/UnnecessaryReturn" message="Vymažte tento nepotrebný ''return'' príkaz." />
+  <rule ref="rulesets/basic.xml/UnconditionalIfStatement" message="Nepoužívajte príkazy ''if'', ktoré sú vždy pravdivé alebo vždy nepravdivé (lebo tento je taký)." />
+  <rule ref="rulesets/basic.xml/EmptyStatementNotInLoop" message="Zmažte prázdny príkaz (bodkočiarka navyše, alebo osamote)." />
+  <rule ref="rulesets/basic.xml/CollapsibleIfStatements" message="Spojte nasledujúce dva za sebou idúce ''if'' príkazy do jedného (podmienky zlúčite logickým operátorom &amp;&amp;)" />
+  <rule ref="rulesets/basic.xml/UselessOverridingMethod" message="Preťaženie metódy je zbytočné, pretože nerobí nič, iba volá svojho predka." />
+
+  <rule ref="rulesets/codesize.xml/ExcessiveMethodLength" message="Metóda obsahuje viac ako 99 príkazov. Skúste redukovať jej veľkosť vytvorením pomocných metód." />
+  <rule ref="rulesets/codesize.xml/ExcessiveParameterList" message="Nepoužívajte viac ako 9 parametrov metódy. Skúste tie parametre zapúzdriť do objektu, prípadne poľa." />
+  <rule ref="rulesets/codesize.xml/ExcessiveClassLength" message="Obmedzte počet metód/príkazov v triede. Trieda musí mať menej ako 1000 riadkov." />
+  <rule ref="rulesets/codesize.xml/ExcessivePublicCount" message="Trieda nesmie mať viac ako 44 verejných dátových členov/metód. Prehodnoťte, či trieda naozaj pokrýva funkcionalitu iba jedného aspektu/objektu reálneho sveta." />
+  <rule ref="rulesets/codesize.xml/CyclomaticComplexity" showClassesComplexity="false" message="Znížte počet: ''if'', ''while'', ''for'', ''case'' príkazov v rámci ''{0} {1}'' (zložitosť je {2} z 10)."/>
+  <rule ref="rulesets/codesize.xml/TooManyFields" message="Trieda by nemala mať viac ako 14 dátových členov." />
+  <rule ref="rulesets/codesize.xml/TooManyMethods" message="Trieda by nemala mať viac ako 9 metód." />
+
+  <rule ref="rulesets/controversial.xml/AssignmentInOperand" message="Nepoužívajte priradenie hodnoty premenným, ktoré vystupujú ako operandy inej operácie (napr. 'if ((x = getX()) != 3)')." />
+
+  <rule ref="rulesets/coupling.xml/CouplingBetweenObjects" message="V triede by sa nemalo používať príliš veľa rozdielnych typov (20 a viac: dátové členy, premenné, ''return'' príkazy), lebo to indikuje vysoký 'coupling'." />
+  <rule ref="rulesets/coupling.xml/ExcessiveImports" message="Znížte počet importov (nesmie ich byť viac ako 30)" />
+  <rule ref="rulesets/coupling.xml/LooseCoupling" message="Pretypujte deklaráciu (namiesto typu ''{0}'' použite rozhranie, ktoré tento typ implementuje)."/>
+
+  <rule ref="rulesets/design.xml/SwitchStmtsShouldHaveDefault" message="Pridajte do príkazu ''switch'' aj ''default:'' značku." />
+  <rule ref="rulesets/design.xml/AvoidDeeplyNestedIfStmts" message="Nepoužívajte viac ako dve vnorenia podmienky 'if..then'." />
+  <rule ref="rulesets/design.xml/AvoidReassigningParameters" message="Vyhnite sa priradeniam hodnoty do parametra ''{0}'' - radšej si vytvorte novú lokálnu premennú." />
+  <rule ref="rulesets/design.xml/DefaultLabelNotLastInSwitchStmt" message="Umiestnite značku ''default:'' v príkaze ''switch'' ako poslednú." />
+  <rule ref="rulesets/design.xml/NonCaseLabelInSwitchStatement" message="V príkaze ''switch'' nepoužívajte značky bez kľúčového slova ''case''. Buď dopíšte ''case '' pred túto značku, alebo ju úplne vyhoďte." />
+  <rule ref="rulesets/design.xml/EqualsNull" message="Nepoužívajte volanie ''obj.equals(null)'', ale klasické porovnanie (''obj == null'')." />
+  <rule ref="rulesets/design.xml/IdempotentOperations" message="Nepoužívajte idempotentné operácie (ako napr. priradenie premennej samej sebe)."/>
+  <rule ref="rulesets/design.xml/AssignmentToNonFinalStatic" message="Buď deklarujte statickú premennú ''{0}'' ako final, alebo sa vyhnite priradeniu jej hodnoty v konštruktore."/>
+  <rule ref="rulesets/design.xml/MissingStaticMethodInNonInstantiatableClass" message="Do triedy doplňte buď verejný konštruktor, alebo statické metódy, pretože teraz je táto trieda nepoužiteľná." />
+  <rule ref="rulesets/design.xml/MissingBreakInSwitch" message="V celom príkaze ''switch'' sa nenachádza žiadny príkaz ''break''."/>
+  <rule ref="rulesets/design.xml/AvoidInstanceofChecksInCatchClause" message="Pri odchytení výnimky nepoužívajte operátor ''instanceof'' na zistenie, o akú výnimku ide. Radšej umiestnite každý typ výnimky do samostatného bloku ''catch''."/>
+  <rule ref="rulesets/design.xml/SimplifyConditional" message="Vymažte kontrolu premennej na ''null'', keď používate operátor ''instanceof'' (napr. 'if (x != null &amp;&amp; x instanceof X)')." />
+  <rule ref="rulesets/design.xml/UnnecessaryLocalBeforeReturn" message="Vyhnite sa vytváraniu zbytočných lokálnych premenných, ako je napr. táto: ''int x = getX(); return x;''."/>
+  <rule ref="rulesets/design.xml/AvoidConstantsInterface" message="Rozhranie musí obsahovať aj deklaráciu metód, nielen konštánt." />
+  <rule ref="rulesets/design.xml/UseCollectionIsEmpty" message="Nahraďte test 'obj.size() == 0' (príp. 'obj.size() != 0') volaním metódy 'obj.isEmpty()' na príslušnom objekte (kolekcii)." />
+  <rule ref="rulesets/design.xml/EmptyMethodInAbstractClassShouldBeAbstract" message="Prázdna metóda v abstraktnej triede by mala byť abstraktná (doplňte kľúčové slovo ''abstract'' za modifikátor viditeľnosti a zmažte telo metódy)." />
+  <rule ref="rulesets/design.xml/SingularField" message="Nahraďte dátový člen ''{0}'' lokálnou premennou, pretože sa používa len v jedinej metóde." />
+  <rule ref="rulesets/design.xml/AbstractClassWithoutAnyMethod" message="V abstraktnej triede nie je žiadna abstraktná metóda - doplňte aspoň jednu. Ak ste mali v úmysle iba zabrániť možnosti vytvoriť inštanciu triedy, použite radšej súkromný alebo chránený konštruktor." />
+  <rule ref="rulesets/design.xml/TooFewBranchesForASwitchStatement" message="Príkaz ''switch'' s menej ako 3 vetvami je neefektívny, radšej ho zameňte za príkazy ''if''." />
+
+  <rule ref="rulesets/imports.xml/DuplicateImports" message="Vymažte tento duplicitný import: ''{0}''." />
+  <rule ref="rulesets/imports.xml/DontImportJavaLang" message="Neimportujte nič z balíčka 'java.lang' (všetky triedy z tohto balíčka sú importované automaticky)." />
+  <rule ref="rulesets/imports.xml/UnusedImports" message="Odstráňte tento nepoužitý import: ''{0}''."/>
+  <rule ref="rulesets/imports.xml/ImportFromSamePackage" message="Neimportujte nič, čo sa nachádza v tom istom balíčku." />
+
+  <rule ref="rulesets/junit.xml/JUnitStaticSuite" message="Metóda 'suite()' nie je verejná a statická zároveň, teda ju JUnit nebude akceptovať. Pridajte preto modifikátory ''public'' a ''static''." />
+  <rule ref="rulesets/junit.xml/JUnitSpelling" message="Nesprávne ste napísali názov metódy frameworku JUnit ('setUp' alebo 'tearDown')." />
+  <rule ref="rulesets/junit.xml/JUnitAssertionsShouldIncludeMessage" message="JUnit predpoklady (assertions) by mali mať ako prvý parameter nejakú textovú správu." />
+  <rule ref="rulesets/junit.xml/JUnitTestsShouldIncludeAssert" message="JUnit testy by mali obsahovať aspoň jedno volanie metódy 'assert()' alebo 'fail()'." />
+  <rule ref="rulesets/junit.xml/TestClassWithoutTestCases" message="Triedy, ktorých názov končí na 'Test' sú chápané ako testovacie triedy. Táto trieda však neobahuje žiadne testovacie prípady (metódy začínajúce na 'test')." />
+  <rule ref="rulesets/junit.xml/UnnecessaryBooleanAssertion" message="Vymažte nepotrebný predpoklad: príkaz 'assertTrue(true)' alebo jemu podobný." />
+  <rule ref="rulesets/junit.xml/UseAssertNullInsteadOfAssertTrue" message="Miesto príkazu 'assertTrue(x==null)', príp. 'assertFalse(x==null)', použite príkaz 'assertNull(x)', príp. 'assertNotNull(x)'." />
+  <rule ref="rulesets/junit.xml/SimplifyBooleanAssertion" message="Príkaz 'assertTrue(!výraz)' nahraďte lepším: 'assertFalse(výraz)'." />
+
+  <rule ref="rulesets/naming.xml/ShortVariable" message="Názov premennej ''{0}'' je príliš krátky (musí mať viac ako 3 znaky)."/>
+  <rule ref="rulesets/naming.xml/LongVariable" message="Názov premennej ''{0}'' je príliš dlhý (musí mať menej ako 17 znakov)." />
+  <rule ref="rulesets/naming.xml/ShortMethodName" message="Názov metódy je príliš krátky (musí mať viac ako 2 znaky)." />
+  <rule ref="rulesets/naming.xml/VariableNamingConventions" message="{0} premenná ''{1}'' musí začínať {2}." />
+  <rule ref="rulesets/naming.xml/MethodNamingConventions" message="Názov metódy by mal vždy začínať malým písmenom, a nemal by obsahovať podtržníky (_)." />
+  <rule ref="rulesets/naming.xml/ClassNamingConventions" message="Názov triedy by mal vždy začínať veľkým písmenom." />
+  <rule ref="rulesets/naming.xml/AbstractNaming" message="Názov abstraktných tried by mal mať formu: 'AbstractXXX'." />
+  <rule ref="rulesets/naming.xml/AvoidDollarSigns" message="Nepoužívajte symbol dolára v názve premennej/metódy/triedy/rozhrania." />
+  <rule ref="rulesets/naming.xml/MethodWithSameNameAsEnclosingClass" message="Trieda by nemala obsahovať metódy s rovnakým názvom ako názov triedy (okrem konštruktorov)." />
+  <rule ref="rulesets/naming.xml/SuspiciousHashcodeMethodName" message="Názov metódy a jej návratový typ sa až príliš podobajú štandardnej metóde všetkých objektov s názvom 'hashCode()'. Buď ju takto pomenujte (čím preťažíte pôvodnú metódu), alebo lepšie zmeňte jej signatúru (stačí názov)." />
+  <rule ref="rulesets/naming.xml/SuspiciousConstantFieldName" message="Názov premennej nesmie byť zložený len z veľkých písmen, ak sa nejedná o konštantu. Avšak ak ide o konštantu, deklarujte premennú ako ''final''." />
+  <rule ref="rulesets/naming.xml/SuspiciousEqualsMethodName" message="Názov metódy, prípadne typ parametra sa až príliš podobajú na štandardnú metódu pre všetky objekty s názvom 'equals(Object)'. Buď ju takto pomenujte (čím preťažíte pôvodnú metódu), alebo lepšie zmeňte jej signatúru (stačí názov)." />
+  <rule ref="rulesets/naming.xml/AvoidFieldNameMatchingTypeName" message="Zmeňte pomenovanie dátového člena, aby sa nezhodoval s názvom triedy."/>
+  <rule ref="rulesets/naming.xml/AvoidFieldNameMatchingMethodName" message="Zmeňte pomenovanie dátového člena, aby sa nezhodoval s názvom metódy."/>
+  <rule ref="rulesets/naming.xml/NoPackage" message="Doplňte názov balíčka na začiatok súboru triedy/rozhrania (vložte riadok ''package názov'', kde názov je cesta adresárov, v ktorých sa trieda/rozhranie nachádza)." />
+  <rule ref="rulesets/naming.xml/PackageCase" message="Názov balíčka nesmie obsahovať veľké písmená." />
+  <rule ref="rulesets/naming.xml/MisleadingVariableName" message="Vymažte z premennej prefix 'm_' (tento sa väčšinou používa len ako prefix pre názvy dátových členov)." />
+  <!--  <rule ref="rulesets/naming.xml/BooleanGetMethodName" /> -->
+
+  <rule ref="rulesets/optimizations.xml/UnnecessaryWrapperObjectCreation" message="Táto typová konverzia sa dá zoptimalizovať ak vynecháte pomocný objekt, ktorý si vytvárate (napr. 'i = Integer.valueOf(s).intValue();' - toto vytvára zbytočný objekt; 'i = Integer.parseInt(s);' - toto je už lepšie)." />
+  <rule ref="rulesets/optimizations.xml/AddEmptyString" message="Na konverziu nepridávajte prázdny reťazec (je to neefektívne, radšej to urobte cez volanie ''String.valueOf()'')."/>
+
+  <rule ref="rulesets/strictexception.xml/ExceptionAsFlowControl" message="Nepoužívajte volania a zachytávanie výnimiek na riadenie toku programu (teda umelý 'goto' príkaz)." />
+  <rule ref="rulesets/strictexception.xml/AvoidCatchingThrowable" message="Nepoužívajte odchytávanie výnimiek typu 'Throwable'." />
+  <rule ref="rulesets/strictexception.xml/AvoidCatchingNPE" message="Nepoužívajte odchytávanie výnimky typu 'NullPointerException'; radšej skúste predísť tejto výnimke dodatočnou kontrolou." />
+  <rule ref="rulesets/strictexception.xml/AvoidThrowingNullPointerException" message="Nehádžte výnimky typu 'NullPointerException', radšej miesto nej 'IllegalArgumentException'." />
+  <rule ref="rulesets/strictexception.xml/AvoidRethrowingException" message="Nehádžte tú istú výnimku v 'catch' bloku." />
+  <rule ref="rulesets/strictexception.xml/DoNotThrowExceptionInFinally" message="Nehádžte výnimky v bloku 'finally'." />
+  <rule ref="rulesets/strictexception.xml/AvoidThrowingNewInstanceOfSameException" message="Nehádžte tú istú výnimku v 'catch' bloku (ani jej novú inštanciu)." />
+  
+  <rule ref="rulesets/strings.xml/AvoidDuplicateLiterals" message="Reťazec {0} sa vyskytuje {1}-krát (viac ako 3; prvý výskyt: riadok {2}); deklarujte ho ako dátový člen typu ''final static String'' a použite takto definovanú premennú v každom výskyte reťazca."/>
+  <rule ref="rulesets/strings.xml/StringInstantiation" message="Nevytvárajte inštanciu objektu String priamo (''new String()''); obyčajne je to zbytočné." />
+  <rule ref="rulesets/strings.xml/StringToString" message="Nepoužívajte volanie ''toString()'' metódy na objektoch typu 'String'." />
+  <rule ref="rulesets/strings.xml/UnnecessaryCaseChange" message="Volanie metódy ''equalsIgnoreCase()'' je lepšie ako volanie ''toUpperCase/toLowerCase().equals()''."  />
+  <rule ref="rulesets/strings.xml/UseIndexOfChar" message="Miesto 'String.indexOf(''reťazec'')' použite 'String.indexOf('znak')'." />
+  <rule ref="rulesets/strings.xml/UselessStringValueOf" message="Nie je potrebné volať ''String.valueOf()'' na konverziu, ak tento objekt chcete pridať k reťazcu." />
+  <rule ref="rulesets/strings.xml/UseEqualsToCompareStrings" message="Pri porovnávaní reťazcov volajte metódu ''equals()'' miesto použitia operátorov  ''=='', prípadne ''!=''." />
+
+  <rule ref="rulesets/unusedcode.xml/UnusedLocalVariable" message="Vymažte nepoužitú lokálnu premennú ''{0}''."/>
+  <rule ref="rulesets/unusedcode.xml/UnusedPrivateField" message="Vymažte nepoužitý dátový člen ''{0}''." />
+  <rule ref="rulesets/unusedcode.xml/UnusedPrivateMethod" message="Vymažte nepoužitú (ani raz nikde nevolanú) súkromnú metódu: ''{0}''." />
+  <rule ref="rulesets/unusedcode.xml/UnusedFormalParameter" message="Vymažte nepoužitý(é) parameter(tre) ''{1}'' v mieste: {0}."/>
+
+</ruleset>
